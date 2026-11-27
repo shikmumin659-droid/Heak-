@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   ARIYAN ™ BIG STAR 30S MOD
+  </title>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+   
+   html, body { 
+     margin:0; padding:0; height:100%; width:100%; overflow:hidden; 
+     background: #000;
+     font-family: 'Orbitron', monospace;
+   }
+   
+   iframe { 
+     position:absolute; top:0; left:0; width:100%; height:100%; border:none; z-index:1; 
+     filter: brightness(0.7) contrast(1.2);
+   }
+
+   /* ম্যাট্রিক্স রেইন ব্যাকগ্রাউন্ড */
+   .matrix-bg {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+     z-index: 0;
+     opacity: 0.1;
+     background: repeating-linear-gradient(
+       0deg,
+       transparent,
+       transparent 2px,
+       rgba(0, 255, 65, 0.03) 2px,
+       rgba(0, 255, 65, 0.03) 4px
+     );
+   }
+
+   .box {
+     width: 120px; height: 100px;
+     background: linear-gradient(135deg, rgba(0, 10, 20, 0.95), rgba(0, 20, 40, 0.9));
+     border: 2px solid #00ff41;
+     border-radius: 8px;
+     box-shadow: 
+       0 0 30px rgba(0, 255, 65, 0.5),
+       inset 0 0 30px rgba(0, 255, 65, 0.1),
+       0 0 60px rgba(0, 255, 65, 0.3),
+       inset 0 0 60px rgba(0, 255, 65, 0.05);
+     color: #00ff41;
+     font-family: 'Orbitron', monospace;
+     text-align: center;
+     padding: 10px 5px;
+     position: fixed; top: 60px; left: 50px; z-index: 9999;
+     cursor: move; user-select: none;
+     backdrop-filter: blur(5px);
+     animation: borderGlow 2s ease-in-out infinite, glitch 3s infinite;
+     overflow: hidden;
+   }
+
+   /* সার্কিট বোর্ড প্যাটার্ন */
+   .box::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-image: 
+       radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+       radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+       radial-gradient(circle at 40% 40%, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
+     pointer-events: none;
+     z-index: -1;
+   }
+
+   /* স্ক্যানলাইন ইফেক্ট */
+   .box::after {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     height: 2px;
+     background: linear-gradient(90deg, transparent, #00ff41, transparent);
+     animation: scanline 4s linear infinite;
+     z-index: 1;
+   }
+
+   @keyframes borderGlow {
+     0%,100% { 
+       border-color: #00ff41; 
+       box-shadow: 
+         0 0 30px rgba(0, 255, 65, 0.5),
+         inset 0 0 30px rgba(0, 255, 65, 0.1),
+         0 0 60px rgba(0, 255, 65, 0.3);
+     }
+     25% { 
+       border-color: #00d4ff; 
+       box-shadow: 
+         0 0 30px rgba(0, 212, 255, 0.5),
+         inset 0 0 30px rgba(0, 212, 255, 0.1),
+         0 0 60px rgba(0, 212, 255, 0.3);
+     }
+     50% { 
+       border-color: #ff00ff; 
+       box-shadow: 
+         0 0 30px rgba(255, 0, 255, 0.5),
+         inset 0 0 30px rgba(255, 0, 255, 0.1),
+         0 0 60px rgba(255, 0, 255, 0.3);
+     }
+     75% { 
+       border-color: #ffff00; 
+       box-shadow: 
+         0 0 30px rgba(255, 255, 0, 0.5),
+         inset 0 0 30px rgba(255, 255, 0, 0.1),
+         0 0 60px rgba(255, 255, 0, 0.3);
+     }
+   }
+
+   @keyframes glitch {
+     0%, 100% { transform: translate(0); }
+     20% { transform: translate(-1px, 1px); }
+     40% { transform: translate(-1px, -1px); }
+     60% { transform: translate(1px, 1px); }
+     80% { transform: translate(1px, -1px); }
+   }
+
+   @keyframes scanline {
+     0% { top: 0; opacity: 1; }
+     100% { top: 100%; opacity: 0; }
+   }
+
+   /* === সিগন্যাল এনিমেশন === */
+   @keyframes signalFlash {
+     0%   { 
+       transform: scale(1) rotateX(0); 
+       box-shadow: 
+         0 0 30px rgba(0, 255, 65, 0.5),
+         inset 0 0 30px rgba(0, 255, 65, 0.1);
+     }
+     20%  { 
+       transform: scale(1.2) rotateX(5deg); 
+       box-shadow: 
+         0 0 50px rgba(0, 255, 65, 1),
+         0 0 100px rgba(0, 255, 65, 0.8),
+         inset 0 0 50px rgba(0, 255, 65, 0.3);
+     }
+     40%  { transform: scale(1) rotateX(0); }
+     60%  { transform: scale(1.1) rotateX(-2deg); }
+     100% { 
+       transform: scale(1) rotateX(0); 
+       box-shadow: 
+         0 0 30px rgba(0, 255, 65, 0.5),
+         inset 0 0 30px rgba(0, 255, 65, 0.1);
+     }
+   }
+
+   @keyframes textPop {
+     0%   { 
+       transform: scale(0.5) rotateY(90deg); 
+       opacity: 0; 
+       text-shadow: 0 0 30px #00ff41, 0 0 60px #00ff41;
+     }
+     50%  { 
+       transform: scale(1.3) rotateY(0); 
+       text-shadow: 0 0 40px #00ff41, 0 0 80px #00ff41;
+     }
+     100% { 
+       transform: scale(1) rotateY(0); 
+       opacity: 1; 
+       text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+     }
+   }
+
+   .title { 
+     font-size: 10px; 
+     font-weight: 900; 
+     background: linear-gradient(90deg, #00ff41, #00d4ff, #ff00ff, #ffff00, #00ff41); 
+     -webkit-background-clip: text; 
+     -webkit-text-fill-color: transparent; 
+     letter-spacing: 2px;
+     text-transform: uppercase;
+     animation: textFlicker 2s infinite;
+     text-shadow: 0 0 10px currentColor;
+   }
+
+   @keyframes textFlicker {
+     0%, 100% { opacity: 1; }
+     50% { opacity: 0.8; }
+     75% { opacity: 0.9; }
+   }
+   
+   .time { 
+     font-size: 9px; 
+     color: #00d4ff; 
+     margin: 3px 0;
+     text-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
+     font-weight: 700;
+     letter-spacing: 1px;
+   }
+   
+   .countdown { 
+     font-size: 16px; 
+     color: #ff00ff; 
+     font-weight: 900; 
+     text-shadow: 
+       0 0 10px #ff00ff, 
+       0 0 20px #ff00ff,
+       0 0 30px #ff00ff;
+     letter-spacing: 2px;
+     animation: pulse 1s infinite;
+   }
+
+   @keyframes pulse {
+     0%, 100% { transform: scale(1); }
+     50% { transform: scale(1.05); }
+   }
+   
+   .signal {
+     font-size: 22px; 
+     font-weight: 900; 
+     margin-top: 5px;
+     opacity: 0;
+     text-shadow: 
+       0 0 10px #00ff41, 
+       0 0 20px #00ff41,
+       0 0 30px #00ff41,
+       0 0 40px #00ff41;
+     letter-spacing: 3px;
+     text-transform: uppercase;
+   }
+
+   .new-signal {
+     animation: textPop 1s ease-out forwards;
+   }
+
+   .flash-box {
+     animation: signalFlash 1.5s ease-out;
+   }
+
+   /* লগইন স্টাইল */
+   #loginPart input {
+     width: 80px; 
+     padding: 6px; 
+     background: rgba(0, 10, 20, 0.8); 
+     border: 1px solid #00ff41;
+     border-radius: 4px; 
+     color: #00ff41; 
+     font-size: 10px; 
+     font-family: 'Orbitron', monospace;
+     text-align: center; 
+     margin: 8px 0 5px;
+     box-shadow: 
+       inset 0 0 10px rgba(0, 255, 65, 0.2),
+       0 0 10px rgba(0, 255, 65, 0.3);
+     text-transform: uppercase;
+     letter-spacing: 1px;
+   }
+   
+   #loginPart button {
+     padding: 5px 15px; 
+     background: linear-gradient(45deg, #00ff41, #00d4ff);
+     color: #000; 
+     border: none; 
+     border-radius: 4px; 
+     font-weight: 900; 
+     font-family: 'Orbitron', monospace;
+     cursor: pointer;
+     box-shadow: 
+       0 0 20px rgba(0, 255, 65, 0.5),
+       inset 0 0 10px rgba(255, 255, 255, 0.3);
+     transition: all 0.3s ease;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     font-size: 10px;
+   }
+   
+   #loginPart button:hover {
+     background: linear-gradient(45deg, #00d4ff, #ff00ff);
+     box-shadow: 
+       0 0 30px rgba(0, 212, 255, 0.8),
+       inset 0 0 15px rgba(255, 255, 255, 0.5);
+     transform: translateY(-2px);
+   }
+   
+   #wrong { 
+     color: #ff0040; 
+     font-size: 8px; 
+     margin-top: 3px; 
+     display: none; 
+     text-shadow: 0 0 5px #ff0040, 0 0 10px #ff0040;
+     font-weight: 700;
+     animation: errorFlicker 0.5s infinite;
+   }
+
+   @keyframes errorFlicker {
+     0%, 100% { opacity: 1; }
+     50% { opacity: 0.5; }
+   }
+
+   /* হ্যাকিং স্ট্যাটাস ইন্ডিকেটর */
+   .status-indicator {
+     position: absolute;
+     top: 5px;
+     right: 5px;
+     width: 8px;
+     height: 8px;
+     background: #00ff41;
+     border-radius: 50%;
+     box-shadow: 0 0 10px #00ff41;
+     animation: statusBlink 1s infinite;
+   }
+
+   @keyframes statusBlink {
+     0%, 100% { opacity: 1; }
+     50% { opacity: 0.3; }
+   }
+  </style>
+ </head>
+ <body>
+  <div class="matrix-bg"></div>
+  <iframe src="https://dkwin9.com/#/register?invitationCode=27332101211">
+  </iframe>
+  <div class="box" id="signalBox">
+   <div class="status-indicator"></div>
+   <div id="loginPart">
+    <div class="title">
+     >HBX😈
+    </div>
+    <input autocomplete="off" id="passInput" placeholder="PASSKEY" type="password"/>
+    <br/>
+    <button onclick="checkPassword()">
+     EXECUTE
+    </button>
+    <div id="wrong">
+     > wrong pass
+    </div>
+   </div>
+   <div id="signalPart" style="display:none;">
+    <div class="title">
+     >👑 HBX 👑<
+    </div>
+    <div class="time" id="currentTime">
+     --:--:--
+    </div>
+    <div class="countdown">
+     <span id="countdown">
+      30
+     </span>
+     s
+    </div>
+    <div class="signal" id="predicted">
+     -
+    </div>
+   </div>
+  </div>
+
+  <script>
+    // পাসওয়ার্ড হালনাগাদ করা হয়েছে
+    const correctPassword = "ARIYAN™VIP";
+    
+    // পাসওয়ার্ড চেক করার ফাংশন
+    function checkPassword() {
+      const inputPassword = document.getElementById('passInput').value;
+      const wrongMsg = document.getElementById('wrong');
+      
+      if (inputPassword === correctPassword) {
+        // পাসওয়ার্ড সঠিক, সিগন্যাল অংশ দেখান, লগইন অংশ লুকান
+        document.getElementById('loginPart').style.display = 'none';
+        document.getElementById('signalPart').style.display = 'block';
+        
+        // সিগন্যাল সিস্টেম চালু করুন
+        startSignalSystem();
+      } else {
+        // পাসওয়ার্ড ভুল, ত্রুটি বার্তা দেখান
+        wrongMsg.style.display = 'block';
+        // 3 সেকেন্ড পরে ত্রুটি বার্তা লুকান
+        setTimeout(() => {
+          wrongMsg.style.display = 'none';
+        }, 3000);
+      }
+    }
+    
+    // সিগন্যাল সিস্টেম
+    let timeInterval;
+    let lastSignalSecond = -1;
+    
+    function startSignalSystem() {
+      // সবার আগে একটা সিগন্যাল তৈরি করে দিন
+      generateSignal();
+      
+      // প্রতি সেকেন্ডে সময় এবং সিগন্যাল আপডেট করুন
+      timeInterval = setInterval(updateGameTime, 1000);
+    }
+    
+    function updateGameTime() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
+      
+      // গেমের সাথে মিলিয়ে কাউন্টডাউন হিসাব করুন
+      const currentSecond = now.getSeconds();
+      const countdownValue = 30 - (currentSecond % 30);
+      document.getElementById('countdown').textContent = countdownValue;
+      
+      // নতুন সিগন্যাল তৈরির সময় হয়েছে কিনা চেক করুন
+      if ((currentSecond === 0 || currentSecond === 30) && currentSecond !== lastSignalSecond) {
+        generateSignal();
+        lastSignalSecond = currentSecond;
+      }
+    }
+    
+    function generateSignal() {
+      const signals = ['BIG', 'SMALL'];
+      const randomSignal = signals[Math.floor(Math.random() * signals.length)];
+      const predictedElement = document.getElementById('predicted');
+      const signalBox = document.getElementById('signalBox');
+      
+      // ফ্ল্যাশ অ্যানিমেশন যোগ করুন
+      signalBox.classList.add('flash-box');
+      setTimeout(() => {
+        signalBox.classList.remove('flash-box');
+      }, 1500);
+      
+      // সিগন্যাল টেক্সট আপডেট করুন
+      predictedElement.textContent = randomSignal;
+      predictedElement.classList.remove('new-signal');
+      
+      // অ্যানিমেশন আবার ট্রিগার করুন
+      void predictedElement.offsetWidth;
+      predictedElement.classList.add('new-signal');
+    }
+    
+    // বাক্সটি ড্র্যাগ করার জন্য তৈরি করুন
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+    
+    const signalBoxElement = document.getElementById('signalBox');
+    
+    // মাউস ইভেন্ট
+    signalBoxElement.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+    
+    // টাচ ইভেন্ট
+    signalBoxElement.addEventListener('touchstart', dragStart, { passive: false });
+    document.addEventListener('touchmove', drag, { passive: false });
+    document.addEventListener('touchend', dragEnd);
+    
+    function dragStart(e) {
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+      
+      if (e.target === signalBoxElement || signalBoxElement.contains(e.target)) {
+        isDragging = true;
+      }
+    }
+    
+    function drag(e) {
+      if (isDragging) {
+        e.preventDefault();
+        
+        let clientX, clientY;
+        if (e.type === "touchmove") {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        } else {
+          clientX = e.clientX;
+          clientY = e.clientY;
+        }
+        
+        currentX = clientX - initialX;
+        currentY = clientY - initialY;
+        
+        xOffset = currentX;
+        yOffset = currentY;
+        
+        signalBoxElement.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      }
+    }
+    
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+      isDragging = false;
+    }
+    
+    // Enter কী সাপোর্ট
+    document.getElementById('passInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    // র্যান্ডম গ্লিচ ইফেক্ট
+    setInterval(() => {
+      const box = document.getElementById('signalBox');
+      if (Math.random() > 0.95) {
+        box.style.animation = 'glitch 0.3s';
+        setTimeout(() => {
+          box.style.animation = 'borderGlow 2s ease-in-out infinite, glitch 3s infinite';
+        }, 300);
+      }
+    }, 5000);
+  </script>
+ </body>
+</html>
